@@ -1,0 +1,17 @@
+{
+  "name": "Template",
+  "script": "server/server.js",
+  "instances": "1",
+  "env_development": {
+    "NODE_ENV": "development",
+    "PORT":3000
+  },
+  "env_production" : {
+    "NODE_ENV": "production",
+    "PORT":4000
+  },
+  "error_file": "err.log",
+  "out_file": "out.log",
+  "merge_logs": false,
+  "log_date_format": "YYYY-MM-DD HH:mm Z"
+}
