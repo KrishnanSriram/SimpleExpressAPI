@@ -10,5 +10,6 @@ const swaggerDocument = YAML.load('./swagger.yaml');
 
 module.exports = function(app) {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-  app.use('/api/v1/health', (req, res) => { res.status(201).send('FNOL Property Services health check. All is well. Thanks for checking!') });
+  app.use('/api/v1/health', (req, res) => { res.status(201).send('FNOL Property Services health check. All is well. Thanks for checking!')});
+  app.use('/api/v1/incident', require('./api/incident'));
 }

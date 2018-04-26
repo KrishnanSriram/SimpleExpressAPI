@@ -2,15 +2,15 @@ swagger: "2.0"
 info:
   description: "Micorservices for FNOL - Auto"
   version: "1.0.0"
-  title: "FNOL Auto - Microservices"
+  title: "FNOL Property - Microservices"
   termsOfService: "http://swagger.io/terms/"
   contact:
     email: "sriramk@grangeinsurance.com"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "vmwpapd02.grangeinsurance.com:3200"
-basePath: "/api/v1"
+host: "vmwpapd02.grangeinsurance.com:3300"
+basePath: "/api/v1/"
 tags:
 - name: "IncidentInformation"
   description: "Incident information"
@@ -1319,6 +1319,7 @@ definitions:
   IncidentRequest:
     type: "object"
     required:
+    - "dateofloss"
     - "causeofloss"
     - "detailedcauseofloss"
     - "incidentdescription"
@@ -1327,18 +1328,14 @@ definitions:
     properties:
       refid:
         $ref: "#/definitions/RefID"
+      dateofloss:
+        type: "string"
       causeofloss:
         type: "string"
       detailedcauseofloss:
         type: "string"
       incidentdescription:
         type: "string"
-      incidentlocation:
-        type: "string"
-      officialatscene:
-        type: "string"
-      official:
-        $ref: "#/definitions/Official"
   PedestrianRequest:
     type: "object"
     required:
