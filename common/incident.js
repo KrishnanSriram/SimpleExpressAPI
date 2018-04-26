@@ -2,7 +2,7 @@
 
 const Schema = require('validate');
 
-const IncidentValidatorSchema = new Schema({
+const IncidentSchema = new Schema({
   dateofloss : {
     type : 'string',
     required : true,
@@ -24,10 +24,10 @@ const IncidentValidatorSchema = new Schema({
     required : true,
     length: { min: 3, max: 400 },
     match: /^[a-zA-Z0-9 ]*$/
- 
+
   }
 },{
   strip: false
 });
 
-module.exports = IncidentValidatorSchema;
+module.exports = IncidentSchema;

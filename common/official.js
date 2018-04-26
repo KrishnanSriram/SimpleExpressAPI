@@ -1,6 +1,5 @@
 'use strict';
 
-'use strict';
 const Schema = require('validate');
 
 const OfficialSchema = new Schema({
