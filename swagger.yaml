@@ -1,0 +1,1551 @@
+swagger: "2.0"
+info:
+  description: "Micorservices for FNOL - Auto"
+  version: "1.0.0"
+  title: "FNOL Auto - Microservices"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "sriramk@grangeinsurance.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "vmwpapd02.grangeinsurance.com:3200"
+basePath: "/api/v1"
+tags:
+- name: "IncidentInformation"
+  description: "Incident information"
+#- name: "VehicleInformation"
+#  description: "Insured vehicle information"
+#- name: "VehicleInsurance"
+#  description: "Insurance information on vehicle"
+#- name: "DamageDetails"
+#  description: "Vehicle damage information"
+#- name: "VehicleLocation"
+#  description: "Vehicle location information"
+#- name: "Driver"
+#  description: "Information about driver involved in accident"
+#- name: "Injury"
+#  description: "Information about driver injuries"
+schemes:
+- "http"
+paths:
+  /incident:
+    post:
+      tags:
+      - "IncidentInformation"
+      summary: "Add incident information"
+      description: ""
+      operationId: "addIncidentInformation"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "incident information that needs to be added to FNOL"
+        required: true
+        schema:
+          $ref: "#/definitions/IncidentRequest"
+      responses:
+        405:
+          description: "Invalid input"
+  /incident/{refid}:
+    get:
+      tags:
+      - "IncidentInformation"
+      summary: "Find incident information by FNOL RefID"
+      description: "Will return incident information"
+      operationId: "findIncidentInformationByRefId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "refid"
+        in: "path"
+        description: "AutoFNOL Ref ID"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            items:
+              $ref: "#/definitions/Incident"
+        400:
+          description: "Invalid status value"
+  /otherparties/pedestrians:
+    post:
+      tags:
+      - "OtherParties-Pedestrians"
+      summary: "Add pedestrian information"
+      description: ""
+      operationId: "addPedestrianInformation"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "pedestrian information that needs to be added to Auto FNOL"
+        required: true
+        schema:
+          $ref: "#/definitions/PedestrianRequest"
+      responses:
+        405:
+          description: "Invalid input"
+  /otherparties/pedestrians/{refid}:
+    get:
+      tags:
+      - "OtherParties-Pedestrians"
+      summary: "Find pedestrian information by FNOL RefID"
+      description: "Will return array of pedestrian information"
+      operationId: "findPedestrianInformationByRefId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "refid"
+        in: "path"
+        description: "AutoFNOL Ref ID"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Pedestrian"
+        400:
+          description: "Invalid status value"
+  /otherparties/properties:
+    post:
+      tags:
+      - "OtherParties-Properties"
+      summary: "Add properties information to Auto FNOL"
+      description: ""
+      operationId: "addPropertiesInformation"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "properties information that needs to be added to Auto FNOL"
+        required: true
+        schema:
+          $ref: "#/definitions/PropertiesRequest"
+      responses:
+        405:
+          description: "Invalid input"
+  /otherparties/properties/{refid}:
+    get:
+      tags:
+      - "OtherParties-Properties"
+      summary: "Find properties information by FNOL RefID"
+      description: "Will return array of properties information"
+      operationId: "findPropertiesInformationByRefId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "refid"
+        in: "path"
+        description: "AutoFNOL Ref ID"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Properties"
+        400:
+          description: "Invalid status value"
+  /otherparties/vehicles:
+    post:
+      tags:
+      - "OtherParties-Vehicles"
+      summary: "Add vehicle information to Auto FNOL"
+      description: ""
+      operationId: "addVehiclesInformation"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "vehicles information that needs to be added to Auto FNOL"
+        required: true
+        schema:
+          $ref: "#/definitions/VehiclesRequest"
+      responses:
+        405:
+          description: "Invalid input"
+  /otherparties/vehicles/{refid}:
+    get:
+      tags:
+      - "OtherParties-Vehicles"
+      summary: "Find vehicles information by FNOL RefID"
+      description: "Will return array of vehicles information"
+      operationId: "findVehiclesInformationByRefId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "refid"
+        in: "path"
+        description: "AutoFNOL Ref ID"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Vehicles"
+        400:
+          description: "Invalid status value"
+#  /vehicle:
+#    post:
+#      tags:
+#      - "VehicleInformation"
+#      summary: "Add vehicle information"
+#      description: ""
+#      operationId: "addVehicleInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "insured vehicle information involved in the incident"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/VehicleRequest"
+#      responses:
+#        405:
+#          description: "Invalid input"
+#        200:
+#          description: "Saved vehicle information"
+#          schema:
+#            $ref: "#/definitions/VehicleRequest"
+#    put:
+#      tags:
+#      - "VehicleInformation"
+#      summary: "Update an existing vehicle information involved in the incident"
+#      description: ""
+#      operationId: "updateVehicleInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "Vehicle Information that needs to be updated in FNOL"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/VehicleRequest"
+#      responses:
+#        200:
+#          description: "Saved vehicle information"
+#          schema:
+#            $ref: "#/definitions/VehicleRequest"
+#        400:
+#          description: "Invalid ID supplied"
+#        301:
+#          description: "Validation exception"
+#  /vehicle/{refid}:
+#    get:
+#      tags:
+#      - "VehicleInformation"
+#      summary: "Find incident information by FNOL ref id"
+#      description: "Will return incident information"
+#      operationId: "findVehicleInformationByRefId"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        description: "AutoFNOL Ref ID"
+#        required: true
+#        type: "string"
+#      responses:
+#        200:
+#          description: "successful operation"
+#          schema:
+#            type: "object"
+#            items:
+#              $ref: "#/definitions/Vehicle"
+#        400:
+#          description: "Invalid status value"
+#    delete:
+#      tags:
+#      - "VehicleInformation"
+#      summary: "Deletes vehicle information associated with FNOL ID"
+#      description: ""
+#      operationId: "deleteVehicleInformation"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        required: true
+#        type: "string"
+#      responses:
+#        400:
+#          description: "Invalid Auto Ref ID supplied"
+#        200:
+#          description: "Vehicle information for ${refid} deleted"
+#  /vehicleinsurance:
+#    post:
+#      tags:
+#      - "VehicleInsurance"
+#      summary: "Add vehicle insurance information"
+#      description: ""
+#      operationId: "addVehicleInsuranceInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "vehicle insurance information"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/VehicleInsuranceRequest"
+#      responses:
+#        405:
+#          description: "Invalid input"
+#        200:
+#          description: "Saved vehicle insurance information"
+#          schema:
+#            $ref: "#/definitions/VehicleInsuranceRequest"
+#    put:
+#      tags:
+#      - "VehicleInsurance"
+#      summary: "Update an insurance information of the vehicle"
+#      description: ""
+#      operationId: "updateVehicleInsuranceInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "Vehicle insurance information that needs to be updated in FNOL"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/VehicleInsuranceRequest"
+#      responses:
+#        200:
+#          description: "Saved vehicle insurance information"
+#          schema:
+#            $ref: "#/definitions/VehicleInsuranceRequest"
+#        400:
+#          description: "Invalid ID supplied"
+#        301:
+#          description: "Validation exception"
+#  /vehicleinsurance/{refid}:
+#    get:
+#      tags:
+#      - "VehicleInsurance"
+#      summary: "Find vehicle insurance information by FNOL ref id"
+#      description: "Will return vehicle insurance information"
+#      operationId: "findVehicleInsuranceInformationByRefId"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        description: "AutoFNOL Ref ID"
+#        required: true
+#        type: "string"
+#      responses:
+#        200:
+#          description: "successful operation"
+#          schema:
+#            type: "object"
+#            items:
+#              $ref: "#/definitions/VehicleInsurance"
+#        400:
+#          description: "Invalid status value"
+#    delete:
+#      tags:
+#      - "VehicleInsurance"
+#      summary: "Deletes vehicle insurance information associated with FNOL ID"
+#      description: ""
+#      operationId: "deleteVehicleInsuranceInformation"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        required: true
+#        type: "string"
+#      responses:
+#        400:
+#          description: "Invalid Auto Ref ID supplied"
+#        200:
+#          description: "Vehicle information for ${refid} deleted"
+#  /damagedetails:
+#    post:
+#      tags:
+#      - "DamageDetails"
+#      summary: "Add damage details for insured vehicle"
+#      description: ""
+#      operationId: "addVDamageDetailsInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "damage details information"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/DamageDetailsRequest"
+#      responses:
+#        405:
+#          description: "Invalid input"
+#        200:
+#          description: "Saved damage details information"
+#          schema:
+#            $ref: "#/definitions/DamageDetailsRequest"
+#    put:
+#      tags:
+#      - "DamageDetails"
+#      summary: "Update damage details information on insured vehicle"
+#      description: ""
+#      operationId: "updateDamageDetailsInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "Update damage details information for insured vehicle"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/DamageDetailsRequest"
+#      responses:
+#        200:
+#          description: "Saved damage details information"
+#          schema:
+#            $ref: "#/definitions/DamageDetailsRequest"
+#        400:
+#          description: "Invalid ID supplied"
+#        301:
+#          description: "Validation exception"
+#  /damagedetails/{refid}:
+#    get:
+#      tags:
+#      - "DamageDetails"
+#      summary: "Find damage details information by FNOL ref id"
+#      description: "Will return damage details information"
+#      operationId: "findDamageDetailsByRefId"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        description: "AutoFNOL Ref ID"
+#        required: true
+#        type: "string"
+#      responses:
+#        200:
+#          description: "successful operation"
+#          schema:
+#            type: "object"
+#            items:
+#              $ref: "#/definitions/DamageDetails"
+#        400:
+#          description: "Invalid status value"
+#    delete:
+#      tags:
+#      - "DamageDetails"
+#      summary: "Deletes damage details information associated with FNOL ID"
+#      description: ""
+#      operationId: "deleteDamageDetails"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        required: true
+#        type: "string"
+#      responses:
+#        400:
+#          description: "Invalid Auto Ref ID supplied"
+#        200:
+#          description: "Vehicle information for ${refid} deleted"
+#  /insuredparty/{refid}:
+#    get:
+#      tags:
+#      - "insuredparty"
+#      summary: "Get complete insured party information"
+#      description: "Get complete insured party information"
+#      operationId: "getInsuredPartyInformationByRefID"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        description: "AutoFNOL Ref ID"
+#        required: true
+#        type: "string"
+#      responses:
+#        200:
+#          description: "successful operation"
+#          schema:
+#            type: "object"
+#            items:
+#              $ref: "#/definitions/InsuredPartyDetails"
+#        400:
+#          description: "Invalid status value"
+#  /passenger:
+#    post:
+#      tags:
+#      - "Passenger"
+#      summary: "Add passenger details of insured party"
+#      description: "Add passenger details of insured party"
+#      operationId: "addPassengerInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "add passenger details of insured party"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/PassengerDetailsRequest"
+#      responses:
+#        405:
+#          description: "Invalid input"
+#        200:
+#          description: "Saved passenger details information"
+#          schema:
+#            $ref: "#/definitions/PassengerDetailsRequest"
+#    put:
+#      tags:
+#      - "Passenger"
+#      summary: "Update passenger details on insured party"
+#      description: ""
+#      operationId: "updatePassengerDetailsInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "Update passenger details on insured party"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/PassengerDetailsRequest"
+#      responses:
+#        200:
+#          description: "Updated passenger details information"
+#          schema:
+#            $ref: "#/definitions/PassengerDetailsRequest"
+#        400:
+#          description: "Invalid ID supplied"
+#        301:
+#          description: "Validation exception"
+#  /passenger/{refid}:
+#    get:
+#      tags:
+#      - "Passenger"
+#      summary: "Locate passenger details information by FNOL ref id"
+#      description: "Return passenger information associated with ref ID"
+#      operationId: "findPassengerDetailsByRefId"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        description: "AutoFNOL Ref ID"
+#        required: true
+#        type: "string"
+#      responses:
+#        200:
+#          description: "successful operation"
+#          schema:
+#            type: "object"
+#            items:
+#              $ref: "#/definitions/PassengerDetails"
+#        400:
+#          description: "Invalid status value"
+#    delete:
+#      tags:
+#      - "Passenger"
+#      summary: "Deletes passenger details associated with FNOL ID"
+#      description: ""
+#      operationId: "deletePassengerDetails"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        required: true
+#        type: "string"
+#      responses:
+#        400:
+#          description: "Invalid Auto Ref ID supplied"
+#        200:
+#          description: "Passenger information for ${refid} deleted"
+#  /passengers/{refid}:
+#    get:
+#      tags:
+#      - "Passenger"
+#      summary: "Locate all passengers by FNOL ref id"
+#      description: "Locate all passengers by FNOL ref id"
+#      operationId: "findPassengersByRefId"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        description: "AutoFNOL Ref ID"
+#        required: true
+#        type: "string"
+#      responses:
+#        200:
+#          description: "successful operation"
+#          schema:
+#            type: "object"
+#            items:
+#              $ref: "#/definitions/PassengersDetails"
+#        400:
+#          description: "Invalid status value"
+#  /passengers/{refid}/{passengerid}:
+#    get:
+#      tags:
+#      - "Passenger"
+#      summary: "Locate passenger details information by FNOL ref id and passenger id"
+#      description: "Return passenger information associated with ref ID and opassenger id"
+#      operationId: "findPassengerDetailsByRefIdAndPassengerID"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        description: "AutoFNOL Ref ID"
+#        required: true
+#        type: "string"
+#      - name: "passengerid"
+#        in: "path"
+#        description: "Passenger ID"
+#        required: true
+#        type: "string"
+#      responses:
+#        200:
+#          description: "successful operation"
+#          schema:
+#            type: "object"
+#            items:
+#              $ref: "#/definitions/PassengerDetails"
+#        400:
+#          description: "Invalid status value"
+#  /vehiclelocation:
+#    post:
+#      tags:
+#      - "VehicleLocation"
+#      summary: "Add vehicle location information of vehicle involved in accident"
+#      description: ""
+#      operationId: "addVehicleLocation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "vehicle location information"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/VehicleLocationRequest"
+#      responses:
+#        405:
+#          description: "Invalid input"
+#        200:
+#          description: "Saved damage details information"
+#          schema:
+#            $ref: "#/definitions/VehicleLocationRequest"
+#    put:
+#      tags:
+#      - "VehicleLocation"
+#      summary: "Update vehicle location information of insured vehicle"
+#      description: ""
+#      operationId: "updateVehicleLocationInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "Update vehicle location information for insured vehicle"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/VehicleLocationRequest"
+#      responses:
+#        200:
+#          description: "Saved vehicle location information"
+#          schema:
+#            $ref: "#/definitions/VehicleLocationRequest"
+#        400:
+#          description: "Invalid ID supplied"
+#        301:
+#          description: "Validation exception"
+#  /vehiclelocation/{refid}:
+#    get:
+#      tags:
+#      - "VehicleLocation"
+#      summary: "Find damage details information by FNOL ref id"
+#      description: "Will return damage details information"
+#      operationId: "findVehicleLocationByRefId"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        description: "AutoFNOL Ref ID"
+#        required: true
+#        type: "string"
+#      responses:
+#        200:
+#          description: "successful operation"
+#          schema:
+#            type: "object"
+#            items:
+#              $ref: "#/definitions/VehicleLocation"
+#        400:
+#          description: "Invalid status value"
+#    delete:
+#      tags:
+#      - "DamageDetails"
+#      summary: "Deletes vehicle location information associated with FNOL ID"
+#      description: ""
+#      operationId: "deleteVehicleLocation"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        required: true
+#        type: "string"
+#      responses:
+#        400:
+#          description: "Invalid Auto Ref ID supplied"
+#        200:
+#          description: "Vehicle information for ${refid} deleted"
+#  /driver:
+#    post:
+#      tags:
+#      - "Driver"
+#      summary: "Add vehicledriver details involved in accident"
+#      description: ""
+#      operationId: "addDriver"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "Driver information"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/DriverRequest"
+#      responses:
+#        405:
+#          description: "Invalid input"
+#        200:
+#          description: "Saved driver information"
+#          schema:
+#            $ref: "#/definitions/DriverRequest"
+#    put:
+#      tags:
+#      - "Driver"
+#      summary: "Update driver information of insured vehicle"
+#      description: ""
+#      operationId: "updateDriverInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "Update driver information for insured vehicle"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/DriverRequest"
+#      responses:
+#        200:
+#          description: "Saved driver information"
+#          schema:
+#            $ref: "#/definitions/DriverRequest"
+#        400:
+#          description: "Invalid ID supplied"
+#        301:
+#          description: "Validation exception"
+#  /driver/{refid}:
+#    get:
+#      tags:
+#      - "Driver"
+#      summary: "Find driver information by FNOL ref id"
+#      description: "Will return driver information"
+#      operationId: "findDriverByRefId"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        description: "AutoFNOL Ref ID"
+#        required: true
+#        type: "string"
+#      responses:
+#        200:
+#          description: "successful operation"
+#          schema:
+#            type: "object"
+#            items:
+#              $ref: "#/definitions/Driver"
+#        400:
+#          description: "Invalid status value"
+#    delete:
+#      tags:
+#      - "Driver"
+#      summary: "Deletes driver information associated with FNOL ID"
+#      description: ""
+#      operationId: "deleteDriver"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        required: true
+#        type: "string"
+#      responses:
+#        400:
+#          description: "Invalid Auto Ref ID supplied"
+#        200:
+#          description: "Driver for ${refid} deleted"
+#  /injury:
+#    post:
+#      tags:
+#      - "Injury"
+#      summary: "Add driver injury information"
+#      description: ""
+#      operationId: "adddDriverInjury"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "Injury information of driver"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/InjuryRequest"
+#      responses:
+#        405:
+#          description: "Invalid input"
+#        200:
+#          description: "Saved injury information"
+#          schema:
+#            $ref: "#/definitions/InjuryRequest"
+#    put:
+#      tags:
+#      - "Injury"
+#      summary: "Update driver's injuries"
+#      description: ""
+#      operationId: "updateDriverInjuryInformation"
+#      consumes:
+#      - "application/json"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - in: "body"
+#        name: "body"
+#        description: "Update driver injury information"
+#        required: true
+#        schema:
+#          $ref: "#/definitions/InjuryRequest"
+#      responses:
+#        200:
+#          description: "Saved driver injury information"
+#          schema:
+#            $ref: "#/definitions/InjuryRequest"
+#        400:
+#          description: "Invalid ID supplied"
+#        301:
+#          description: "Validation exception"
+#  /injury/{refid}:
+#    get:
+#      tags:
+#      - "Injury"
+#      summary: "Find driver injury information by FNOL ref id"
+#      description: "Will return driver injury information"
+#      operationId: "findDriverInjuryByRefId"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        description: "AutoFNOL Ref ID"
+#        required: true
+#        type: "string"
+#      responses:
+#        200:
+#          description: "successful operation"
+#          schema:
+#            type: "object"
+#            items:
+#              $ref: "#/definitions/Injury"
+#        400:
+#          description: "Invalid status value"
+#    delete:
+#      tags:
+#      - "Injury"
+#      summary: "Deletes driver injury information associated with FNOL ID"
+#      description: ""
+#      operationId: "deleteDriveryInjury"
+#      produces:
+#      - "application/json"
+#      parameters:
+#      - name: "refid"
+#        in: "path"
+#        required: true
+#        type: "string"
+#      responses:
+#        400:
+#          description: "Invalid Auto Ref ID supplied"
+#        200:
+#          description: "Injury info of driver for ${refid} deleted"
+definitions:
+  RefID:
+    type: "string"
+  PhoneNumber:
+    type: "object"
+    required:
+    - "type"
+    - "phonenumber"
+    properties:
+      type:
+        type: "string"
+      phonenumber:
+        type: "string"
+  PhoneContact:
+    type: "object"
+    required:
+    - "preferredphone"
+    - "phonenumbers"
+    properties:
+      preferredphone:
+        type: "string"
+      phonenumbers:
+        type: "array"
+        items:
+          $ref: "#/definitions/PhoneNumber"
+  Contact:
+    type: "object"
+    required:
+    - "firstname"
+    - "lastname"
+    properties:
+      firstname:
+        type: "string"
+      lastname:
+        type: "string"
+      dob:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        $ref: "#/definitions/PhoneContact"
+#  Person:
+#    type: "object"
+#    required:
+#    - "contact"
+#    - "address"
+#    - "licensenumber"
+#    properties:
+#      contact:
+#        $ref: "#/definitions/Contact"
+#      address:
+#        $ref: "#/definitions/Address"
+#      licensenumber:
+#        type: "string"
+#  Driver:
+#    type: "object"
+#    required:
+#    - "person"
+#    - "autorefid"
+#    properties:
+#      person:
+#        $ref: "#/definitions/Person"
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      licensenumber:
+#        type: "string"
+  Address:
+    type: "object"
+    required:
+    - "address1"
+    - "city"
+    - "state"
+    - "zipcode"
+    properties:
+      address1:
+        type: "string"
+      address2:
+        type: "string"
+      city:
+        type: "string"
+      state:
+        type: "string"
+      zipcode:
+        type: "number"
+#  Loss:
+#    type: "object"
+#    required:
+#    - "date"
+#    - "cause"
+#    properties:
+#      date:
+#        type: "string"
+#      cause:
+#        type: "string"
+#      description:
+#        type: "string"
+  LossLocation:
+    type: "object"
+    properties:
+      description:
+        type: "string"
+      ispropertyownersaddress:
+        type: "boolean"
+  Pedestrian:
+    type: "object"
+    required:
+    - "contact"
+    - "injurydetails"
+    - "address"
+    properties:
+      contact:
+        $ref: "#/definitions/Contact"
+      address:
+        $ref: "#/definitions/Address"
+      injurydetails:
+        $ref: "#/definitions/Injury"
+  Properties:
+    type: "object"
+    required:
+    - "contact"
+    - "losslocation"
+    - "propertydetails"
+    properties:
+      contact:
+        $ref: "#/definitions/Contact"
+      propertydetails:
+        $ref: "#/definitions/Address"
+      losslocation:
+        $ref: "#/definitions/LossLocation"
+  Official:
+    type: "object"
+    required:
+    - "name"
+    - "departmenttype"
+    - "reportnumber"
+    properties:
+      name:
+        type: "string"
+      departmenttype:
+        type: "string"
+      reportnumber:
+        type: "string"
+  Incident:
+    type: "object"
+    required:
+    - "causeofloss"
+    - "detailedcauseofloss"
+    - "incidentdescription"
+    - "incidentlocation"
+    - "officialatscene"
+    properties:
+      causeofloss:
+        type: "string"
+      detailedcauseofloss:
+        type: "string"
+      incidentdescription:
+        type: "string"
+      incidentlocation:
+        type: "string"
+      officialatscene:
+        type: "string"
+      official:
+        $ref: "#/definitions/Official"
+#  InsuredPartyDetails:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "damagedetails"
+#    - "driver"
+#    - "incident"
+#    - "injury"
+#    - "passenger"
+#    - "vehicle"
+#    - "vehicleinsurance"
+#    - "vehiclelocation"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      damagedetails:
+#        $ref: "#/definitions/DamageDetails"
+#      driver:
+#        $ref: "#/definitions/Driver"
+#      incident:
+#        $ref: "#/definitions/Incident"
+#      injury:
+#        $ref: "#/definitions/Injury"
+#      passenger:
+#        $ref: "#/definitions/PassengerDetails"
+#      vehicle:
+#        $ref: "#/definitions/Vehicle"
+#      vehicleinsurance:
+#        $ref: "#/definitions/VehicleInsurance"
+#      vehiclelocation:
+#        $ref: "#/definitions/VehicleLocation"
+  Passenger:
+    type: "object"
+    required:
+    - "contact"
+    - "isminor"
+    - "injury"
+    properties:
+      isminor:
+        type: "boolean"
+      contact:
+        $ref: "#/definitions/VehicleDetails"
+      injury:
+        $ref: "#/definitions/Injury"
+  Vehicle:
+    type: "object"
+    required:
+    - "make"
+    - "year"
+    - "model"
+    - "isvehicledamaged"
+    - "vehicledetails"
+    properties:
+      vin:
+        type: "string"
+      license:
+        type: "string"
+      color:
+        type: "string"
+      isvehicledamaged:
+        type: "boolean"
+      details:
+        $ref: "#/definitions/VehicleDetails"
+  VehicleDetails:
+    type: "object"
+    required:
+    - "vin"
+    - "licenseplate"
+    - "color"
+    properties:
+      vin:
+        type: "string"
+      license:
+        type: "string"
+      color:
+        type: "string"
+  VehicleOwnerDetails:
+    type: "object"
+    required:
+    - "vehicleownerindividual"
+    - "contact"
+    - "address"
+    properties:
+      vehicleownerindividual:
+        type: "string"
+      contact:
+        $ref: "#/definitions/Contact"
+      address:
+        $ref: "#/definitions/Address"
+  Vehicles:
+    type: "object"
+    required:
+    - "contact"
+    - "vehicle"
+    - "damagedetails"
+    - "people"
+    - "ownerdetails"
+    - "passenger"
+    - "driverdetails"
+    properties:
+      contact:
+        $ref: "#/definitions/Contact"
+      vehicle:
+        $ref: "#/definitions/Vehicle"
+      damagedetails:
+        $ref: "#/definitions/Damage"
+      people:
+        $ref: "#/definitions/People"
+      ownerdetails:
+        $ref: "#/definitions/VehicleOwnerDetails"
+      passenger:
+        $ref: "#/definitions/Passenger"
+      driverdetails:
+        $ref: "#/definitions/OtherPartyDriver"
+#  VehicleInsurance:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "collision"
+#    - "comprehensive"
+#    - "rentalLimit"
+#    - "towing"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      collision:
+#        type: "string"
+#      comprehensive:
+#        type: "string"
+#      rentalLimit:
+#        type: "string"
+#      towing:
+#        type: "string"
+  Damage:
+    type: "object"
+    required:
+    - "drivable"
+    - "towed"
+    properties:
+      description:
+        type: "string"
+      vehicledrivable:
+        type: "boolean"
+      vehicletowed:
+        type: "boolean"
+  OtherPartyDriver:
+    type: "object"
+    required:
+    - "email"
+    - "isvehicleowner"
+    - "driveraddressandvehicleowneraddressaresame"
+    - "injury"
+    properties:
+      email:
+        type: "string"
+      isvehicleowner:
+        type: "boolean"
+      driveraddressandvehicleowneraddressaresame:
+        type: "boolean"
+      injury:
+        $ref: "#/definitions/Injury"
+  People:
+    type: "object"
+    required:
+    - "driverinjured"
+    - "fatal"
+    - "numberofpassengers"
+    - "passengersinjured"
+    - "passengerfatalities"
+    properties:
+      driverinjured:
+        type: "string"
+      fatal:
+        type: "string"
+      numberofpassengers:
+        type: "number"
+      passengersinjured:
+        type: "string"
+      passengerfatalities:
+        type: "string"
+  Injury:
+    type: "object"
+    required:
+    - "attorney"
+    - "transportedflight"
+    properties:
+      description:
+        type: "string"
+      representedbyattorney:
+        type: "boolean"
+      lifeflight:
+        type: "boolean"
+      isinjured:
+        type: "boolean"
+      isfatal:
+        type: "boolean"
+#  PassengerDetails:
+#    type: "object"
+#    required:
+#    - "contact"
+#    - "address"
+#    - "minor"
+#    properties:
+#      contact:
+#        $ref: "#/definitions/Contact"
+#      address:
+#        $ref: "#/definitions/Address"
+#      minor:
+#        type: "boolean"
+#  PassengersDetails:
+#    type: "array"
+#    required:
+#    - "passenger"
+#    properties:
+#      passenger:
+#        $ref: "#/definitions/PassengerDetails"
+  IncidentRequest:
+    type: "object"
+    required:
+    - "causeofloss"
+    - "detailedcauseofloss"
+    - "incidentdescription"
+    - "incidentlocation"
+    - "officialatscene"
+    properties:
+      refid:
+        $ref: "#/definitions/RefID"
+      causeofloss:
+        type: "string"
+      detailedcauseofloss:
+        type: "string"
+      incidentdescription:
+        type: "string"
+      incidentlocation:
+        type: "string"
+      officialatscene:
+        type: "string"
+      official:
+        $ref: "#/definitions/Official"
+  PedestrianRequest:
+    type: "object"
+    required:
+    - "refid"
+    - "causeofloss"
+    - "detailedcauseofloss"
+    - "incidentdescription"
+    - "incidentlocation"
+    - "officialatscene"
+    properties:
+      refid:
+        $ref: "#/definitions/RefID"
+      contact:
+        $ref: "#/definitions/Contact"
+      injurydetails:
+        $ref: "#/definitions/Injury"
+      address:
+        $ref: "#/definitions/Address"
+  PropertiesRequest:
+    type: "object"
+    required:
+    - "refid"
+    - "contact"
+    - "losslocation"
+    - "propertydetails"
+    properties:
+      refid:
+        $ref: "#/definitions/RefID"
+      contact:
+        $ref: "#/definitions/Contact"
+      losslocation:
+        $ref: "#/definitions/LossLocation"
+      propertydetails:
+        $ref: "#/definitions/Address"
+  VehiclesRequest:
+    type: "object"
+    required:
+    - "refid"
+    - "contact"
+    - "vehicle"
+    - "damagedetails"
+    - "people"
+    - "ownerdetails"
+    - "passenger"
+    - "driverdetails"
+    properties:
+      refid:
+        $ref: "#/definitions/RefID"
+      contact:
+        $ref: "#/definitions/Contact"
+      vehicle:
+        $ref: "#/definitions/Vehicle"
+      damagedetails:
+        $ref: "#/definitions/Damage"
+      people:
+        $ref: "#/definitions/People"
+      ownerdetails:
+        $ref: "#/definitions/VehicleOwnerDetails"
+      passenger:
+        $ref: "#/definitions/Passenger"
+      driverdetails:
+        $ref: "#/definitions/OtherPartyDriver"
+#  PassengerDetailsRequest:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "passenger"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      vehicle:
+#        $ref: "#/definitions/PassengerDetails"
+#  VehicleRequest:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "incident"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      vehicle:
+#        $ref: "#/definitions/Vehicle"
+#  VehicleInsuranceRequest:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "vehicleinsurance"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      vehicleinsurance:
+#        $ref: "#/definitions/VehicleInsurance"
+#  VehicleInsuranceResponse:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "vehicleinsurance"
+#    - "id"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      vehicleinsurance:
+#        $ref: "#/definitions/VehicleInsurance"
+#      id:
+#        type: "string"
+#  DamageDetailsRequest:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "damagedetails"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      damagedetails:
+#        $ref: "#/definitions/DamageDetails"
+#  DamageDetailsResponse:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "damagedetials"
+#    - "id"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      damagedetails:
+#        $ref: "#/definitions/DamageDetails"
+#      id:
+#        type: "string"
+#  VehicleLocationRequest:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "vehiclelocation"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      damagedetails:
+#        $ref: "#/definitions/VehicleLocation"
+#  VehicleLocationResponse:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "vehiclelocation"
+#    - "id"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      vehiclelocation:
+#        $ref: "#/definitions/VehicleLocation"
+#      id:
+#        type: "string"
+#  DriverRequest:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "driver"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      damagedetails:
+#        $ref: "#/definitions/Driver"
+#  DriverResponse:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "driver"
+#    - "id"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      vehiclelocation:
+#        $ref: "#/definitions/Driver"
+#      id:
+#        type: "string"
+#  InjuryRequest:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "injury"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      damagedetails:
+#        $ref: "#/definitions/Injury"
+#  InjuryResponse:
+#    type: "object"
+#    required:
+#    - "autorefid"
+#    - "injury"
+#    - "id"
+#    properties:
+#      autorefid:
+#        $ref: "#/definitions/AutoRefID"
+#      vehiclelocation:
+#        $ref: "#/definitions/Injury"
+#      id:
+#        type: "string"
+#  ApiResponse:
+#    type: "object"
+#    properties:
+#      code:
+#        type: "integer"
+#        format: "int32"
+#      type:
+#        type: "string"
+#      message:
+#        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

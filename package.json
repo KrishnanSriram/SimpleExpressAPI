@@ -1,10 +1,10 @@
 {
-  "name": "Template",
+  "name": "PropertyFNOL",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./server/server.js",
-    "start_pm2": "pm2 start pm2.json --env development",
+    "start": "pm2 start ./server/server.js --name PropertyFNOLManual",
+    "start_pm2": "pm2 stop PropertyFNOL && pm2 remove PropertyFNOL && pm2 start pm2.json --env development",
     "test": "mocha --exit",
     "stop": "pm2 stop Template && pm2 delete Template",
     "clean": "rm -rf err-*.log out-*.log node_modules",

@@ -1,14 +1,14 @@
 {
-  "name": "Template",
+  "name": "PropertyFNOL",
   "script": "server/server.js",
   "instances": "1",
   "env_development": {
     "NODE_ENV": "development",
-    "PORT":3000
+    "PORT":3300
   },
   "env_production" : {
     "NODE_ENV": "production",
-    "PORT":4000
+    "PORT":3300
   },
   "error_file": "err.log",
   "out_file": "out.log",
