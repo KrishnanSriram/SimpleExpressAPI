@@ -7,6 +7,9 @@ var IncidentSchema = new Schema({
   refid:{
     type : 'string'
   },
+  dateofloss: {
+    type: "string"
+  },
   causeofloss: {
     type : 'string'
   },

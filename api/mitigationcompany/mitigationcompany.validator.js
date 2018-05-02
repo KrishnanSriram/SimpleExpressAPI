@@ -16,7 +16,7 @@ const PhoneSchema = new Schema({
   }
 });
 
-const PropertySchema = new Schema({
+const MitigationCompanySchema = new Schema({
   refid: {
     type: 'string',
     required: true,
@@ -33,10 +33,10 @@ const PropertySchema = new Schema({
     message: 'companycontacted should be yes, no or unknown'
 
   },
-  phonenumber: {
+  phone: {
     type: [PhoneSchema],
     required: false
   }
 });
 
-module.exports = PropertySchema;
+module.exports = MitigationCompanySchema;

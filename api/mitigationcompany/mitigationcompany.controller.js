@@ -60,7 +60,7 @@ exports.create = (req, res) => {
 };
 
 function processMitigationCompanyFromRequest(req) {
-  const { company, companycontacted, phonenumber } = req.body.property;
+  const { company, companycontacted, phonenumber } = req.body.mitigationcompany;
   const { refid } = req.body;
   const mitigationCompany = {
     refid: refid,
